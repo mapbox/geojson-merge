@@ -1,0 +1,32 @@
+{
+  "name": "geojson-merge",
+  "version": "0.0.0",
+  "description": "merge multiple geojson files",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "bin": {
+    "geojson-merge": "geojson-merge"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mapbox/geojson-merge.git"
+  },
+  "keywords": [
+    "geojson",
+    "merge",
+    "featurecollection"
+  ],
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mapbox/geojson-merge/issues"
+  },
+  "homepage": "https://github.com/mapbox/geojson-merge",
+  "dependencies": {
+    "geojson-normalize": "0.0.0",
+    "geojson-fixtures": "~0.1.0",
+    "tape": "~2.13.4"
+  }
+}

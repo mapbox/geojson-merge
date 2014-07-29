@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+var merge = require('./'),
+    fs = require('fs');
+
+process.stdout.write(JSON.stringify(merge(process.argv.slice(2).map(function(n) {
+    return JSON.parse(fs.readFileSync(n));
+})), null, 2));
