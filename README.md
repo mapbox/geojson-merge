@@ -1,5 +1,7 @@
 # geojson-merge
 
+[![build status](https://secure.travis-ci.org/mapbox/geojson-merge.png)](http://travis-ci.org/mapbox/geojson-merge)
+
 Merge multiple [GeoJSON](http://geojson.org/) files into one FeatureCollection.
 
 ## install
