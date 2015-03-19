@@ -19,3 +19,20 @@ FeatureCollection.
 
     npm install -g geojson-merge
     geojson-merge file.geojson otherfile.geojson > combined.geojson
+
+## geojson-merge (for dummies)
+  
+### Windows Instructions:  
+  
+1. Start the `node.js` application  
+2. Open `cmd.exe`  
+2. Browse to a folder where you'd like `geojson-merge` installed  
+3. In `cmd.exe` type the install string from above  
+4. Wait patiently, it could take a moment to start  
+5. Use `cd node_modules` to change directory  to the `node_modules` folder  
+5. For simplicity sake, move your .geojson files into this `node_modules` directory  
+6. Run this command to merge your files:  
+  
+```
+node geojson-merge file1.geojson file2.geojson > merged.geojson
+```
