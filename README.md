@@ -36,3 +36,10 @@ FeatureCollection.
 ```
 node geojson-merge file1.geojson file2.geojson > merged.geojson
 ```
+
+**Merging multiple files in a folder**
+
+```
+geojson-merge folder/*.geojson > combined.geojson
+```
+
