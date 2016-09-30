@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 var merge = require('./'),
-    fs = require('fs');
+    fs = require('fs'),
+    argv = require('minimist')(process.argv.slice(2));
 
-process.stdout.write(JSON.stringify(merge(process.argv.slice(2).map(function(n) {
+process.stdout.write(JSON.stringify(merge(argv._.map(function(n) {
     return JSON.parse(fs.readFileSync(n));
 })), null, 2));
