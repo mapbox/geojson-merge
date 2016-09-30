@@ -28,7 +28,6 @@ function geojsonStreamMerge (inputs) {
 
     var combinedStream = new StreamConcat(nextStream, { objectMode: true });
 
-    combinedStream.pipe(geojsonStream.parse())
+    return combinedStream.pipe(geojsonStream.parse())
       .pipe(geojsonStream.stringify())
-      .pipe(process.stdout);
 }

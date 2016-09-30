@@ -4,7 +4,7 @@ var merge = require('./'),
     argv = require('minimist')(process.argv.slice(2));
 
 if (argv.s || argv.stream) {
-  merge(argv._, { stream: true })
+  merge(argv._, { stream: true }).pipe(process.stdout)
 } else {
   process.stdout.write(JSON.stringify(merge(argv._.map(function(n) {
       return JSON.parse(fs.readFileSync(n));
