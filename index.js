@@ -4,7 +4,7 @@ var geojsonStream = require('geojson-stream');
 var fs = require('fs');
 
 module.exports = function(inputs, options) {
-    return (options.stream)
+    return (options || {}).stream
     ? geojsonStreamMerge(inputs)
     : geojsonMerge(inputs)
 };
@@ -23,7 +23,7 @@ function geojsonStreamMerge (inputs) {
         return fs.createReadStream(file);
     })
     var nextStream = function () {
-        return streams.shift();
+        return streams.shift() || null;
     }
 
     var combinedStream = new StreamConcat(nextStream, { objectMode: true });
