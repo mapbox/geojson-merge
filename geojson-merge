@@ -3,6 +3,12 @@ var merge = require('./'),
     fs = require('fs'),
     argv = require('minimist')(process.argv.slice(2));
 
+if (!argv._.length || argv.help) {
+  console.log('usage: geojson-merge [-s] FILE FILE2 FILE3');
+  console.log('\n  --stream (or -s): use streaming mode for large files');
+  return;
+}
+
 if (argv.s || argv.stream) {
   merge(argv._, { stream: true }).pipe(process.stdout)
 } else {

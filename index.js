@@ -1,5 +1,4 @@
 var normalize = require('geojson-normalize');
-var StreamConcat = require('stream-concat');
 var geojsonStream = require('geojson-stream');
 var fs = require('fs');
 
@@ -19,15 +18,11 @@ function geojsonMerge (inputs) {
 }
 
 function geojsonStreamMerge (inputs) {
-    var streams = inputs.map(function(file) {
-        return fs.createReadStream(file);
-    })
-    var nextStream = function () {
-        return streams.shift() || null;
-    }
-
-    var combinedStream = new StreamConcat(nextStream, { objectMode: true });
-
-    return combinedStream.pipe(geojsonStream.parse())
-      .pipe(geojsonStream.stringify())
+    var out = geojsonStream.stringify();
+    inputs.forEach(function(file) {
+        fs.createReadStream(file)
+            .pipe(geojsonStream.parse())
+            .pipe(out);
+    });
+    return out;
 }

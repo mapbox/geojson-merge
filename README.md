@@ -17,6 +17,12 @@ FeatureCollection.
 
 ## cli
 
+Options:
+
+* `-s` or `--stream` to use the high-performance streaming mode. This allows
+  you to combine very large GeoJSON files. Streaming mode requires every
+  GeoJSON file to contain a FeatureCollection at the top level.
+
     npm install -g geojson-merge
     geojson-merge file.geojson otherfile.geojson > combined.geojson
 
