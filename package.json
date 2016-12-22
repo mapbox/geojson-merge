@@ -1,5 +1,5 @@
 {
-  "name": "geojson-merge",
+  "name": "@mapbox/geojson-merge",
   "version": "0.3.0",
   "description": "merge multiple geojson files",
   "main": "index.js",
