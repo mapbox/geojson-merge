@@ -6,7 +6,9 @@ Merge multiple [GeoJSON](http://geojson.org/) files into one FeatureCollection.
 
 ## install
 
-    npm install geojson-merge
+```bash
+$ npm install --save geojson-merge
+```
 
 ## api
 
@@ -19,12 +21,14 @@ FeatureCollection.
 
 Options:
 
-* `-s` or `--stream` to use the high-performance streaming mode. This allows
-  you to combine very large GeoJSON files. Streaming mode requires every
-  GeoJSON file to contain a FeatureCollection at the top level.
+> `-s` or `--stream` to use the high-performance streaming mode. This allows
+> you to combine very large GeoJSON files. Streaming mode requires every
+> GeoJSON file to contain a FeatureCollection at the top level.
 
-    npm install -g geojson-merge
-    geojson-merge file.geojson otherfile.geojson > combined.geojson
+```bash
+$ npm install -g geojson-merge
+$ geojson-merge file.geojson otherfile.geojson > combined.geojson
+```
 
 ## geojson-merge (for dummies)
   
@@ -39,13 +43,13 @@ Options:
 5. For simplicity sake, move your .geojson files into this `node_modules` directory  
 6. Run this command to merge your files:  
   
-```
-node geojson-merge file1.geojson file2.geojson > merged.geojson
+```bash
+$ node geojson-merge file1.geojson file2.geojson > merged.geojson
 ```
 
 **Merging multiple files in a folder**
 
-```
-geojson-merge folder/*.geojson > combined.geojson
+```bash
+$ geojson-merge folder/*.geojson > combined.geojson
 ```
 
