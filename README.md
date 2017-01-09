@@ -7,7 +7,7 @@ Merge multiple [GeoJSON](http://geojson.org/) files into one FeatureCollection.
 ## install
 
 ```bash
-$ npm install --save geojson-merge
+$ npm install --save @mapbox/geojson-merge
 ```
 
 ## api
@@ -26,7 +26,7 @@ Options:
 > GeoJSON file to contain a FeatureCollection at the top level.
 
 ```bash
-$ npm install -g geojson-merge
+$ npm install -g @mapbox/geojson-merge
 $ geojson-merge file.geojson otherfile.geojson > combined.geojson
 ```
 
