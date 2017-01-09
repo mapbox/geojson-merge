@@ -1,6 +1,6 @@
 import * as merge from '../'
 import * as path from 'path'
-const fixtures = require('geojson-fixtures')
+const fixtures = require('@mapbox/geojson-fixtures')
 
 const point: GeoJSON.Feature<GeoJSON.Point> = fixtures.geometry.point
 const feature: GeoJSON.Feature<any> = fixtures.feature.one
