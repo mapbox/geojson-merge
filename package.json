@@ -3,8 +3,10 @@
   "version": "0.3.0",
   "description": "merge multiple geojson files",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test.js && npm run types",
+    "types": "tsc test/types.ts --noImplicitAny"
   },
   "bin": {
     "geojson-merge": "geojson-merge"
@@ -31,5 +33,10 @@
     "minimist": "^1.2.0",
     "stream-concat": "0.1.0",
     "tape": "~2.13.4"
+  },
+  "devDependencies": {
+    "@types/geojson": "0.0.31",
+    "@types/node": "^6.0.58",
+    "typescript": "^2.1.4"
   }
 }
