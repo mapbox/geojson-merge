@@ -1,6 +1,6 @@
 var merge = require('./'),
     test = require('tape'),
-    fixtures = require('geojson-fixtures');
+    fixtures = require('@mapbox/geojson-fixtures');
 
 
 test('merge', function(t) {
