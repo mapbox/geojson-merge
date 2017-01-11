@@ -1,16 +1,20 @@
-var merge = require('./'),
+var geojsonMerge = require('./'),
     test = require('tape'),
-    fixtures = require('geojson-fixtures');
+    fixtures = require('geojson-fixtures')
+    concat = require('concat-stream');
 
 
 test('merge', function(t) {
-    t.equal(merge([fixtures.geometry.point, fixtures.feature.one]).features.length, 2);
+    t.equal(geojsonMerge.merge([fixtures.geometry.point, fixtures.feature.one]).features.length, 2);
     t.end();
 });
 
 test('streaming merge', function (t) {
-    var stream = merge(['fixtures/featureCollection.geojson', 'fixtures/featureCollection.geojson'], { stream: true });
+    var stream = geojsonMerge.mergeFeatureCollectionStream(['fixtures/featureCollection.geojson', 'fixtures/featureCollection.geojson'], { stream: true });
     t.equal(typeof stream, 'object');
     t.equal(typeof stream.pipe,'function');
-    t.end();
+    stream.pipe(concat(function (combined) {
+        t.equal(JSON.parse(combined).features.length, 2);
+        t.end();
+    }));
 });
