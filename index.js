@@ -9,6 +9,15 @@ var fs = require('fs');
  *
  * @param {Array<Object>} inputs a list of GeoJSON objects of any type
  * @return {Object} a geojson FeatureCollection.
+ * * @example
+ * var geojsonMerge = require('@mapbox/geojson-merge');
+ *
+ * var mergedStream = geojsonMerge.merge([
+ *   { type: 'Point', coordinates: [0, 1] },
+ *   { type: 'Feature', geometry: { type: 'Point', coordinates: [0, 1] }, properties: {} }
+ * ]);
+ *
+ * mergedStream.pipe(process.stdout);
  */
 function merge (inputs) {
     var output = {
@@ -33,6 +42,14 @@ function merge (inputs) {
  * larger than what you can keep in memory at one time.
  * @param {Array<string>} inputs a list of filenames of GeoJSON files
  * @returns {Stream} output: a stringified JSON of a FeatureCollection.
+ * @example
+ * var geojsonMerge = require('@mapbox/geojson-merge');
+ *
+ * var mergedStream = geojsonMerge.mergeFeatureCollectionStream([
+ *   'features.geojson',
+ *   'otherFeatures.geojson'])
+ *
+ * mergedStream.pipe(process.stdout);
  */
 function mergeFeatureCollectionStream (inputs) {
     var out = geojsonStream.stringify();
