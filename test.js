@@ -1,6 +1,6 @@
 var geojsonMerge = require('./'),
     test = require('tape'),
-    fixtures = require('geojson-fixtures')
+    fixtures = require('@mapbox/geojson-fixtures')
     concat = require('concat-stream');
 
 
