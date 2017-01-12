@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "merge multiple geojson files",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "test": "tape test.js",
-    "doc": "documentation readme -s API"
+    "test": "tape test.js && npm run types",
+    "doc": "documentation readme -s API",
+    "types": "tsc test/types.ts --noImplicitAny"
   },
   "bin": {
     "geojson-merge": "geojson-merge"
@@ -26,15 +28,17 @@
   },
   "homepage": "https://github.com/mapbox/geojson-merge",
   "dependencies": {
-    "geojson-fixtures": "~0.1.0",
     "geojson-normalize": "0.0.0",
     "geojson-stream": "0.0.1",
-    "minimist": "^1.2.0",
-    "stream-concat": "0.1.0",
-    "tape": "~2.13.4"
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
+    "@types/geojson": "0.0.31",
+    "@types/node": "^7.0.0",
     "concat-stream": "^1.6.0",
-    "documentation": "^4.0.0-beta.18"
+    "documentation": "^4.0.0-beta.18",
+    "geojson-fixtures": "~0.1.0",
+    "tape": "~2.13.4",
+    "typescript": "^2.1.5"
   }
 }
