@@ -1,4 +1,4 @@
-var normalize = require('geojson-normalize');
+var normalize = require('@mapbox/geojson-normalize');
 var geojsonStream = require('geojson-stream');
 var fs = require('fs');
 
@@ -9,7 +9,7 @@ var fs = require('fs');
  *
  * @param {Array<Object>} inputs a list of GeoJSON objects of any type
  * @return {Object} a geojson FeatureCollection.
- * * @example
+ * @example
  * var geojsonMerge = require('@mapbox/geojson-merge');
  *
  * var mergedStream = geojsonMerge.merge([
