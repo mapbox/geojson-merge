@@ -35,6 +35,12 @@
   },
   "devDependencies": {
     "concat-stream": "^1.6.0",
+    "cz-conventional-changelog": "1.2.0",
     "documentation": "^4.0.0-beta.18"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
