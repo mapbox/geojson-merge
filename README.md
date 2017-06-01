@@ -30,6 +30,17 @@ Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
   { type: 'Feature', geometry: { type: 'Point', coordinates: [0, 1] }, properties: {} }
 ]);mergedStream.pipe(process.stdout);
 
+**Example**
+
+```javascript
+var geojsonMerge = require('@mapbox/geojson-merge');
+
+var mergedGeojson = geojsonMerge.merge([
+  'features.geojson',
+  'otherFeatures.geojson'
+]);
+```
+
 ### mergeFeatureCollectionStream
 
 Merge GeoJSON files containing GeoJSON FeatureCollections
