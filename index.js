@@ -1,4 +1,4 @@
-var normalize = require('geojson-normalize');
+var normalize = require('@mapbox/geojson-normalize');
 var geojsonStream = require('geojson-stream');
 var fs = require('fs');
 
