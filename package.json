@@ -31,7 +31,7 @@
     "geojson-stream": "0.0.1",
     "minimist": "^1.2.0",
     "stream-concat": "0.1.0",
-    "tape": "~2.13.4"
+    "tape": "^4.9.0"
   },
   "devDependencies": {
     "concat-stream": "^1.6.0",
