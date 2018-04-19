@@ -9,7 +9,7 @@ var fs = require('fs');
  *
  * @param {Array<Object>} inputs a list of GeoJSON objects of any type
  * @return {Object} a geojson FeatureCollection.
- * * @example
+ * @example
  * var geojsonMerge = require('@mapbox/geojson-merge');
  *
  * var mergedStream = geojsonMerge.merge([

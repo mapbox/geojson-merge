@@ -22,13 +22,22 @@ including FeatureCollection, Feature, and Geometry types.
 
 **Parameters**
 
--   `inputs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** a list of GeoJSON objects of any type
+-   `inputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** a list of GeoJSON objects of any type
 
-Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** a geojson FeatureCollection.-   @example
-    var geojsonMerge = require('@mapbox/geojson-merge');var mergedStream = geojsonMerge.merge(\[
+**Examples**
+
+```javascript
+var geojsonMerge = require('@mapbox/geojson-merge');
+
+var mergedStream = geojsonMerge.merge([
   { type: 'Point', coordinates: [0, 1] },
   { type: 'Feature', geometry: { type: 'Point', coordinates: [0, 1] }, properties: {} }
-]);mergedStream.pipe(process.stdout);
+]);
+
+mergedStream.pipe(process.stdout);
+```
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** a geojson FeatureCollection.
 
 ### mergeFeatureCollectionStream
 
@@ -41,7 +50,7 @@ larger than what you can keep in memory at one time.
 
 **Parameters**
 
--   `inputs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>** a list of filenames of GeoJSON files
+-   `inputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** a list of filenames of GeoJSON files
 
 **Examples**
 
