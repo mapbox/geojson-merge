@@ -24,11 +24,18 @@ including FeatureCollection, Feature, and Geometry types.
 
 -   `inputs` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)>** a list of GeoJSON objects of any type
 
-Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** a geojson FeatureCollection.-   @example
-    var geojsonMerge = require('@mapbox/geojson-merge');var mergedStream = geojsonMerge.merge(\[
-  { type: 'Point', coordinates: [0, 1] },
-  { type: 'Feature', geometry: { type: 'Point', coordinates: [0, 1] }, properties: {} }
-]);mergedStream.pipe(process.stdout);
+Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** a geojson FeatureCollection.
+
+**Example**
+
+```javascript
+var geojsonMerge = require('@mapbox/geojson-merge');
+
+var mergedGeojson = geojsonMerge.merge([
+   { type: 'Point', coordinates: [0, 1] },
+   { type: 'Feature', geometry: { type: 'Point', coordinates: [0, 1] }, properties: {} }
+ ]);
+```
 
 ### mergeFeatureCollectionStream
 
