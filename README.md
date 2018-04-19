@@ -29,12 +29,12 @@ including FeatureCollection, Feature, and Geometry types.
 ```javascript
 var geojsonMerge = require('@mapbox/geojson-merge');
 
-var mergedStream = geojsonMerge.merge([
+var mergedGeoJSON = geojsonMerge.merge([
   { type: 'Point', coordinates: [0, 1] },
   { type: 'Feature', geometry: { type: 'Point', coordinates: [0, 1] }, properties: {} }
 ]);
 
-mergedStream.pipe(process.stdout);
+console.log(JSON.stringify(mergedGeoJSON));
 ```
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** a geojson FeatureCollection.
