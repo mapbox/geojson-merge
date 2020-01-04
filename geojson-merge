@@ -3,7 +3,10 @@ var geojsonMerge = require('./'),
     stream = geojsonMerge.mergeFeatureCollectionStream,
     merge = geojsonMerge.merge,
     fs = require('fs'),
-    argv = require('minimist')(process.argv.slice(2));
+    argv = require('minimist')(process.argv.slice(2), {
+      boolean: ['stream'],
+      alias: { s: 'stream' }
+    });
 
 if (!argv._.length || argv.help) {
   console.log('usage: geojson-merge [-s] FILE FILE2 FILE3');
