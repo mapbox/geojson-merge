@@ -1,0 +1,84 @@
+name: NPM release
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch: {}
+
+# Run releases one at a time, so two runs can't publish the same version or move `latest`
+# backwards. A queued run that gets superseded is dropped; its commits roll into the next release.
+concurrency:
+  group: npm-release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  CI: true
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  publish:
+    name: "Publish ${{ github.ref_name }}"
+    runs-on: ubuntu-latest
+    # npm's Trusted Publisher config for @mapbox/geojson-merge is bound to this workflow file and environment.
+    environment: npm-release
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Upgrade npm for OIDC trusted publishing support
+        run: npm install -g npm@^11.5.1
+
+      - name: Install npm dependencies
+        run: npm ci --no-fund --no-audit --prefer-offline
+
+      - name: Test
+        run: npm test
+
+      # Reads the current version from public npmjs and git history
+      - id: version
+        uses: mapbox/gha@action-conventional-commit-version-v0
+        with:
+          before-sha: ${{ github.event.before }}
+          after-sha: ${{ github.event.after }}
+
+      - name: Publish
+        if: steps.version.outputs.skip != 'true'
+        run: |
+          npm version ${{ steps.version.outputs.version }} --no-git-tag-version
+          npm publish --tag ${{ steps.version.outputs.npm_publish_tag }}
+
+      - id: release
+        name: Create GitHub Release
+        continue-on-error: true
+        if: steps.version.outputs.skip != 'true' && steps.version.outputs.npm_publish_tag == 'latest'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: gh release create "v$VERSION" --target "$GITHUB_SHA" --title "v$VERSION" --generate-notes
+
+      - name: Comment released version on PRs
+        continue-on-error: true
+        if: steps.release.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -o pipefail
+          package_name="$(node -p 'require("./package.json").name')"
+          for sha in $(git rev-list "$BEFORE_SHA..$GITHUB_SHA"); do
+            gh api "repos/$GITHUB_REPOSITORY/commits/$sha/pulls" --jq '.[].number'
+          done | sort -u | while read -r pr; do
+            gh pr comment "$pr" --body "Released in \`$package_name@$VERSION\` (release [\`v$VERSION\`](https://github.com/$GITHUB_REPOSITORY/releases/tag/v$VERSION))."
+          done

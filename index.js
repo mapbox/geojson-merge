@@ -1,6 +1,7 @@
 var normalize = require('@mapbox/geojson-normalize');
 var geojsonStream = require('geojson-stream');
 var fs = require('fs');
+var StreamConcat = require('stream-concat');
 
 /**
  * Merge a series of GeoJSON objects into one FeatureCollection containing all
@@ -52,13 +53,12 @@ function merge (inputs) {
  * mergedStream.pipe(process.stdout);
  */
 function mergeFeatureCollectionStream (inputs) {
-    var out = geojsonStream.stringify();
-    inputs.forEach(function(file) {
-        fs.createReadStream(file)
-            .pipe(geojsonStream.parse())
-            .pipe(out);
-    });
-    return out;
+    var index = 0;
+    return new StreamConcat(function() {
+        return index < inputs.length ? fs.createReadStream(inputs[index++]) : null;
+    })
+        .pipe(geojsonStream.parse())
+        .pipe(geojsonStream.stringify());
 }
 
 module.exports.merge = merge;

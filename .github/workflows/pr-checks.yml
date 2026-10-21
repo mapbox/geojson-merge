@@ -1,0 +1,35 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches: ["main"]
+
+env:
+  CI: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci --no-fund --no-audit --prefer-offline
+
+      - name: Test
+        run: npm test
