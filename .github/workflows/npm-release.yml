@@ -47,7 +47,7 @@ jobs:
 
       # Reads the current version from public npmjs and git history
       - id: version
-        uses: mapbox/gha@action-conventional-commit-version-v0
+        uses: mapbox/gha-public/action-conventional-commit-version@main
         with:
           before-sha: ${{ github.event.before }}
           after-sha: ${{ github.event.after }}
