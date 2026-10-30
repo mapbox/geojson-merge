@@ -1,0 +1,15 @@
+name: NPM release
+
+# Placeholder that lets npm-release.yml be dispatched on other branches; GitHub only offers
+# workflow_dispatch for workflows that exist on the default branch. It never publishes.
+on:
+  workflow_dispatch: {}
+
+permissions: {}
+
+jobs:
+  publish:
+    name: "Publish ${{ github.ref_name }}"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "No release workflow on this branch."
