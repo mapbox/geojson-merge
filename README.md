@@ -102,16 +102,9 @@ $ geojson-merge folder/*.geojson > combined.geojson
 
 ## publishing
 
-Pull Requests merged to `main` with conventional commit prefixes are automatically published to npm by the `NPM release` GitHub Actions workflow, as new major/minor/patch versions (`feat!:`/`feat:`/`fix:` respectively). When using "Squash and merge", ensure your PR title includes the conventional commit prefix; a `BREAKING CHANGE:` footer only counts if it ends up in the squash commit's body. Other prefixes (`chore:`, `docs:`, etc.) or no prefix don't trigger a release.
+Pull Requests to `main` automatically publish a new version based on the PR's title prefix (`major:`, `minor:` or `patch:`) to the npmjs registry.
 
-Examples:
-- `fix: handle empty input` -> patch
-- `feat: add an option` -> minor
-- `feat!: change the return type` (requires manual migration work) -> major
-
-The workflow publishes via [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/) (OIDC), so no npm token is needed. This requires an npm org admin to configure a trusted publisher for `@mapbox/geojson-merge` (GitHub Actions, workflow `npm-release.yml`, environment `npm-release`), and the `npm-release` GitHub Environment to exist in this repository. After publishing, the workflow creates a GitHub Release with generated notes and comments the released version on the merged PRs.
-
-`package.json`'s `version` may be incremented manually if needed (for example, to skip a minor version), but you shouldn't normally need to touch it; the published npm version, not `package.json`, is the source of truth for what gets released next.
+The published version in the registry is the source of truth for the package version, but you can manually increment the `package.json`'s `version`.
 
 ### pre-release versions on other branches
 

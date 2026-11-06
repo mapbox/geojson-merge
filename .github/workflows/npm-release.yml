@@ -26,12 +26,12 @@ jobs:
     # npm's Trusted Publisher config for @mapbox/geojson-merge is bound to this workflow file and environment.
     environment: npm-release
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -47,7 +47,7 @@ jobs:
 
       # Reads the current version from public npmjs and git history
       - id: version
-        uses: mapbox/gha-public/action-conventional-commit-version@main
+        uses: mapbox/gha-public/action-conventional-commit-version@918654eb1ba9cf76a90f4eeee93b3b6db83851f2 # main, 2026-11-06
         with:
           before-sha: ${{ github.event.before }}
           after-sha: ${{ github.event.after }}
