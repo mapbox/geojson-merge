@@ -1,0 +1,18 @@
+name: PR title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  version-bump-prefix:
+    name: Version bump prefix
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          [[ "$TITLE" =~ ^(major|minor|patch)(\([^\)]*\))?!?: ]] || { echo "::error title=Missing version bump prefix::Start the PR title with major:, minor: or patch: to release when it merges."; exit 1; }

@@ -1,7 +1,5 @@
 # geojson-merge
 
-[![build status](https://secure.travis-ci.org/mapbox/geojson-merge.png)](http://travis-ci.org/mapbox/geojson-merge)
-
 Merge multiple [GeoJSON](http://geojson.org/) files into one FeatureCollection.
 
 ## install
@@ -101,3 +99,13 @@ $ node geojson-merge file1.geojson file2.geojson > merged.geojson
 ```bash
 $ geojson-merge folder/*.geojson > combined.geojson
 ```
+
+## publishing
+
+Pull Requests to `main` automatically publish a new version based on the PR's title prefix (`major:`, `minor:` or `patch:`) to the npmjs registry.
+
+The published version in the registry is the source of truth for the package version, but you can manually increment the `package.json`'s `version`.
+
+### pre-release versions on other branches
+
+For testing in downstream projects, you can manually trigger the "NPM release" workflow on a branch to publish a pre-release tagged with the short commit sha (e.g. `1.1.1-aa79c6a`) under the npm `prerelease` dist-tag, without affecting `latest`. Check the workflow results for the published version.
